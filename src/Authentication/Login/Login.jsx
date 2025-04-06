@@ -9,7 +9,6 @@ const Login = () => {
     const { signInUser, googleLogin, githubLogin, loading, setLoading } = useAuth();
     const location = useLocation();
     const navigate = useNavigate();
-    console.log(location);
 
     const handleLogin = (e) => {
         e.preventDefault();
