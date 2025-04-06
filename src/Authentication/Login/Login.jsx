@@ -1,12 +1,16 @@
 import React from 'react';
 import { FaGithub, FaGoogle, } from 'react-icons/fa6';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import useAuth from '../../Hooks/useAuth';
 import { VscLoading } from 'react-icons/vsc';
 import { toast } from 'react-toastify';
 
 const Login = () => {
-    const { signInUser, loading, setLoading } = useAuth();
+    const { signInUser, googleLogin, githubLogin, loading, setLoading } = useAuth();
+    const location = useLocation();
+    const navigate = useNavigate();
+    console.log(location);
+
     const handleLogin = (e) => {
         e.preventDefault();
         const form = e.target;
@@ -29,13 +33,38 @@ const Login = () => {
         signInUser(email, password)
             .then(() => {
                 setLoading(false);
+                navigate(location?.state ? location?.state : '/');
                 return toast.success('User Login Successfully');
             })
             .catch(err => {
                 setLoading(false);
                 return toast.error(err.message);
             });
-    }
+    };
+    const handleGoogle = () => {
+        googleLogin()
+            .then(res => {
+                console.log(res);
+                navigate(location?.state ? location?.state : '/');
+                return toast.success('User Login Successfully');
+            })
+            .catch(err => {
+                return toast.error(err.message);
+            });
+    };
+
+    const handleGithub = () => {
+        githubLogin()
+            .then(res => {
+                console.log(res);
+                navigate(location?.state ? location?.state : '/');
+                return toast.success('User Login Successfully');
+            })
+            .catch(err => {
+                return toast.error(err.message);
+            });
+    };
+
     return (
         <div className="w-full max-w-md mx-auto my-5 p-4 rounded-md shadow sm:p-8 dark:bg-gray-50 dark:text-gray-800">
             <h2 className="mb-3 text-3xl font-semibold text-center">Login to your account</h2>
@@ -43,11 +72,11 @@ const Login = () => {
                 <Link to={'/register'} rel="noopener noreferrer" className="focus:underline hover:underline">Sign Up</Link>
             </p>
             <div className="my-6 space-y-4">
-                <button aria-label="Login with Google" type="button" className="flex items-center justify-center w-full p-4 space-x-4 border rounded-md focus:ring-2 focus:ring-offset-1 dark:border-gray-600 focus:dark:ring-violet-600 hover:text-green-500">
+                <button onClick={handleGoogle} aria-label="Login with Google" type="button" className="flex items-center justify-center w-full p-4 space-x-4 border rounded-md focus:ring-2 focus:ring-offset-1 dark:border-gray-600 focus:dark:ring-violet-600 hover:text-green-500">
                     <FaGoogle />
                     <p>Login with Google</p>
                 </button>
-                <button aria-label="Login with GitHub" role="button" className="flex items-center justify-center w-full p-4 space-x-4 border rounded-md focus:ring-2 focus:ring-offset-1 dark:border-gray-600 focus:dark:ring-violet-600 hover:text-gray-500">
+                <button onClick={handleGithub} aria-label="Login with GitHub" role="button" className="flex items-center justify-center w-full p-4 space-x-4 border rounded-md focus:ring-2 focus:ring-offset-1 dark:border-gray-600 focus:dark:ring-violet-600 hover:text-gray-500">
                     <FaGithub />
                     <p>Login with GitHub</p>
                 </button>

@@ -8,7 +8,7 @@ import auth from "../../Firebase/Firebase.config";
 import { updateProfile } from "firebase/auth";
 
 const Register = () => {
-    const { createUser, loading, setLoading } = useAuth();
+    const { createUser, googleLogin, githubLogin, loading, setLoading } = useAuth();
     const [show, setShow] = useState(false);
     const navigate = useNavigate();
 
@@ -20,7 +20,6 @@ const Register = () => {
         const password = form.password.value;
         const photoUrl = form.photoUrl.value;
 
-        const user = { name, email, password, photoUrl };
         if (password.length < 6) {
             setLoading(false);
             return toast.error('Your password should at least 6 character long');
@@ -33,7 +32,8 @@ const Register = () => {
             setLoading(false);
             return toast.error('Your password should contain a lower letter')
         }
-        console.log(user);
+        // const user = { name, email, password, photoUrl };
+        // console.log(user);
         createUser(email, password)
             .then(res => {
                 updateProfile(auth.currentUser, {
@@ -48,6 +48,30 @@ const Register = () => {
             })
             .catch(err => {
                 console.log(err);
+                return toast.error(err.message);
+            });
+    };
+
+    const handleGoogle = () => {
+        googleLogin()
+            .then(res => {
+                console.log(res);
+                toast.success('User Login Successfully');
+                return navigate('/login');
+            })
+            .catch(err => {
+                return toast.error(err.message);
+            });
+    };
+
+    const handleGithub = () => {
+        githubLogin()
+            .then(res => {
+                console.log(res);
+                toast.success('User Login Successfully');
+                return navigate('/login');
+            })
+            .catch(err => {
                 return toast.error(err.message);
             });
     };
@@ -94,16 +118,16 @@ const Register = () => {
                 <div className="flex-1 h-px sm:w-16 dark:bg-gray-300"></div>
             </div>
             <div className="flex justify-center space-x-4">
-                <button aria-label="Log in with Google" className="p-3 rounded-sm hover:text-green-500">
+                <button onClick={handleGoogle} aria-label="Log in with Google" className="p-3 rounded-sm hover:text-green-500">
                     <FaGoogle size={25} />
                 </button>
-                <button aria-label="Log in with GitHub" className="p-3 rounded-sm hover:text-gray-500">
+                <button onClick={handleGithub} aria-label="Log in with GitHub" className="p-3 rounded-sm hover:text-gray-500">
                     <FaGithub size={25} />
                 </button>
             </div>
-            <p className="text-xs text-center sm:px-6 dark:text-gray-600">Don't have an account?
+            {/* <p className="text-xs text-center sm:px-6 dark:text-gray-600">Don't have an account?
                 <Link to={'/login'} rel="noopener noreferrer" href="#" className="underline dark:text-gray-800">Sign In</Link>
-            </p>
+            </p> */}
         </div>
     );
 };
