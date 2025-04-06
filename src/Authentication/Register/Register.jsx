@@ -85,7 +85,7 @@ const Register = () => {
                     {loading ? <button className="w-full px-8 py-2.5 leading-5 text-white transition-colors duration-300 transform bg-lime-700/60 rounded-md hover:bg-sky-500 focus:outline-none focus:bg-sky-600 flex justify-center items-center">
                         <VscLoading className=" animate-spin" size={20} />
                     </button>
-                        : <input className="w-full px-8 py-2.5 leading-5 text-white transition-colors duration-300 transform bg-sky-700 rounded-md focus:outline-none focus:bg-sky-600" type="submit" value="Sign In" />}
+                        : <input className="w-full px-8 py-2.5 leading-5 text-white transition-colors duration-300 transform bg-sky-700 rounded-md focus:outline-none focus:bg-sky-600" type="submit" value="Sign Up" />}
                 </div>
             </form>
             <div className="flex items-center pt-4 space-x-1">
@@ -102,7 +102,7 @@ const Register = () => {
                 </button>
             </div>
             <p className="text-xs text-center sm:px-6 dark:text-gray-600">Don't have an account?
-                <Link to={'/login'} rel="noopener noreferrer" href="#" className="underline dark:text-gray-800">Sign up</Link>
+                <Link to={'/login'} rel="noopener noreferrer" href="#" className="underline dark:text-gray-800">Sign In</Link>
             </p>
         </div>
     );

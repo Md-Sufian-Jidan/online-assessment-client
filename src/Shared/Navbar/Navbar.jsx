@@ -1,14 +1,25 @@
 import { Link, NavLink } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
+import { toast } from "react-toastify";
 
 const Navbar = () => {
-    const { user } = useAuth();
+    const { user, logOut } = useAuth();
     const navLinks = <>
         <li><NavLink to={'/'} className={({ isActive }) => isActive === true ? 'text-[#334155] font-extrabold btn mr-2' : 'mr-2 font-medium btn hover:bg-[#38BDF8] hover:text-[#3B82F6'}>Home</NavLink></li>
         <li><NavLink to={'/create-assignment'} className={({ isActive }) => isActive === true ? 'text-[#334155] font-extrabold btn mr-2' : 'mr-2 font-medium btn hover:bg-[#38BDF8] hover:text-[#3B82F6'}>Create Assignment</NavLink></li>
         <li><NavLink to={'/assignments'} className={({ isActive }) => isActive === true ? 'text-[#334155] font-extrabold btn mr-2' : 'mr-2 font-medium btn hover:bg-[#38BDF8] hover:text-[#3B82F6'}>Assignments</NavLink></li>
         <li><NavLink to={'/pending-assignments'} className={({ isActive }) => isActive === true ? 'text-[#334155] font-extrabold btn mr-2' : 'mr-2 font-medium btn hover:bg-[#38BDF8] hover:text-[#3B82F6'}>Pending Assignments</NavLink></li>
     </>;
+
+    const handleLogOut = () => {
+        logOut()
+            .then(() => {
+                toast.success('User logout successfully');
+            })
+            .catch(error => {
+                toast.error(error.message);
+            });
+    };
 
     return (
         <div className="navbar bg-blue-100 rounded-lg">
@@ -36,8 +47,8 @@ const Navbar = () => {
                         <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
                             <div className="w-10 rounded-full">
                                 <img
-                                    alt="Tailwind CSS Navbar component"
-                                    src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+                                    alt="Profile Picture"
+                                    src={user ? user?.photoURL : "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"} />
                             </div>
                         </div>
                         <ul
@@ -52,8 +63,7 @@ const Navbar = () => {
                 <div className="space-x-2">
                     {
                         user ?
-                            <Link>
-                                <button>Logout</button></Link>
+                            <button onClick={handleLogOut} className="btn btn-error">Logout</button>
                             :
                             <>
                                 <Link to={'/login'}>
