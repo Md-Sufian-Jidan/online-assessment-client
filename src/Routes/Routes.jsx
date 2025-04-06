@@ -25,7 +25,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/assignments',
-                element: <PrivateRoute><Assignments /></PrivateRoute>
+                element: <Assignments />,
             },
             {
                 path: '/pending-assignments',
