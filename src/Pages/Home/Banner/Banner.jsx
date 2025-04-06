@@ -37,7 +37,7 @@ const Banner = () => {
                         </div>
                     </SwiperSlide>
                     <SwiperSlide>
-                        <div className="h-[60vh] w-full bg-cover bg-no-repeat bg-center bg-[url('https://i.ibb.co/4NGdbNH/beautiful-umbrella-chair-around-swimming-pool-hotel-resort.jpg')]">
+                        <div className="h-[60vh] w-full bg-cover bg-no-repeat bg-center bg-[url('https://i.ibb.co/HTLJYVxk/hands.png')]">
                         </div>
                     </SwiperSlide>
                 </Swiper>
