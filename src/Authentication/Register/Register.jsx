@@ -2,7 +2,7 @@ import { VscLoading } from "react-icons/vsc";
 import useAuth from "../../Hooks/useAuth";
 import { FaEye, FaEyeSlash, FaGithub, FaGoogle } from "react-icons/fa6";
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import auth from "../../Firebase/Firebase.config";
 import { updateProfile } from "firebase/auth";

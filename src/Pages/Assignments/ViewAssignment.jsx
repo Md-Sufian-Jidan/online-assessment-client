@@ -4,7 +4,6 @@ import { useState } from "react";
 import { toast } from "react-toastify";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
-
 const ViewAssignment = () => {
     const { user } = useAuth();
     const axiosSecure = useAxiosSecure();
@@ -21,7 +20,6 @@ const ViewAssignment = () => {
         if (!pdfLink || !note) {
             return toast.error("All fields are required.");
         }
-
         // Submitted assignment data
         const submittedAssignment = {
             assignment: assignment.data,

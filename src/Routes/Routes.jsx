@@ -9,52 +9,63 @@ import Assignments from "../Pages/Assignments/Assignments";
 import PendingAssignments from "../Pages/PendingAssignments/PendingAssignments";
 import PrivateRoute from "../Providers/PrivateRoute";
 import ViewAssignment from "../Pages/Assignments/ViewAssignment";
-import useAxiosSecure from "../Hooks/useAxiosSecure";
 import UpdateAssignment from "../Pages/Assignments/UpdateAssignment";
 
-const axiosSecure = useAxiosSecure();
-
-export const router = createBrowserRouter([
+const router = createBrowserRouter([
     {
         path: "/",
         element: <Main />,
         errorElement: <Error />,
         children: [
             {
-                path: '/',
-                element: <Home />
+                path: "/",
+                element: <Home />,
             },
             {
-                path: '/create-assignment',
-                element: <PrivateRoute><CreateAssignment /></PrivateRoute>
+                path: "/create-assignment",
+                element: <PrivateRoute><CreateAssignment /></PrivateRoute>,
             },
             {
-                path: '/assignments',
+                path: "/assignments",
                 element: <Assignments />,
             },
             {
-                path: '/view/:id',
+                path: "/view/:id",
                 element: <PrivateRoute><ViewAssignment /></PrivateRoute>,
-                loader: ({ params }) => axiosSecure.get(`/assignment/${params?.id}`)
+                loader: async ({ params }) => {
+                    const { default: useAxiosSecure } = await import("../Hooks/useAxiosSecure");
+                    const axiosSecure = useAxiosSecure();
+                    return axiosSecure.get(`/assignment/${params?.id}`);
+                },
             },
             {
-                path: '/update/:id',
+                path: "/update/:id",
                 element: <PrivateRoute><UpdateAssignment /></PrivateRoute>,
-                loader: ({ params }) => axiosSecure.get(`/assignment/${params?.id}`)
+                loader: async ({ params }) => {
+                    const { default: useAxiosSecure } = await import("../Hooks/useAxiosSecure");
+                    const axiosSecure = useAxiosSecure();
+                    return axiosSecure.get(`/assignment/${params?.id}`);
+                },
             },
             {
-                path: '/pending-assignments',
+                path: "/pending-assignments",
                 element: <PrivateRoute><PendingAssignments /></PrivateRoute>,
-                loader: () => axiosSecure.get('/pending')
+                loader: async () => {
+                    const { default: useAxiosSecure } = await import("../Hooks/useAxiosSecure");
+                    const axiosSecure = useAxiosSecure();
+                    return axiosSecure.get("/pending");
+                },
             },
             {
-                path: '/login',
-                element: <Login />
+                path: "/login",
+                element: <Login />,
             },
             {
-                path: '/register',
-                element: <Register />
-            }
-        ]
+                path: "/register",
+                element: <Register />,
+            },
+        ],
     },
 ]);
+
+export default router;

@@ -5,7 +5,7 @@ import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import { toast } from "react-toastify";
 
 const CreateAssignment = () => {
-    const { user, loading, setLoading } = useAuth();
+    const { user, loading } = useAuth();
     const [difficulty, setDifficulty] = useState('');
     const axiosSecure = useAxiosSecure();
 

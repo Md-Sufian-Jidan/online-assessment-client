@@ -1,4 +1,3 @@
-import React from 'react';
 import { FaGithub, FaGoogle, } from 'react-icons/fa6';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import useAuth from '../../Hooks/useAuth';

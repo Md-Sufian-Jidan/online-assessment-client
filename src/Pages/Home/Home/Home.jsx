@@ -4,11 +4,11 @@ import Features from "../Features/Features/Features";
 
 const Home = () => {
     return (
-        <div>
+        <>
             <Banner />
             <Features />
             <Faq />
-        </div>
+        </>
     );
 };
 
