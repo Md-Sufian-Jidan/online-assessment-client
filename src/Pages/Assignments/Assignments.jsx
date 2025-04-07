@@ -6,12 +6,19 @@ import useAuth from "../../Hooks/useAuth";
 const Assignments = () => {
     const { user } = useAuth();
     const [assignments, setAssignments] = useState([]);
+    const [selected, setSelected] = useState("all");
     const axiosSecure = useAxiosSecure();
 
     useEffect(() => {
-        axiosSecure.get('/assignments')
+        axiosSecure.get(`/assignments?difficulty=${selected}`)
             .then(res => setAssignments(res.data));
-    }, []);
+    }, [selected]);
+
+
+    const handleChange = (e) => {
+        const value = e.target.value;
+        setSelected(value);
+    };
 
     return (
         <>
@@ -24,6 +31,18 @@ const Assignments = () => {
                     Select one to get started and submit before the due date!
                 </p>
 
+            </div>
+            <div className="mb-6 flex justify-center">
+                <select
+                    value={selected}
+                    onChange={handleChange}
+                    className="border border-gray-300 text-sm rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                >
+                    <option value="all">All Difficulties</option>
+                    <option value="easy">Easy</option>
+                    <option value="medium">Medium</option>
+                    <option value="hard">Hard</option>
+                </select>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-5">
                 {/* AssignmentCard goes here */}

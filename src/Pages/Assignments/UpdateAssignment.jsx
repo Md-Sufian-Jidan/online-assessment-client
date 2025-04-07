@@ -1,16 +1,22 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import useAuth from "../../Hooks/useAuth";
-import { useLoaderData, useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 
 const UpdateAssignment = () => {
     const { user } = useAuth();
+    const { id } = useParams();
+    const [assignment, setAssignment] = useState([]);
     const axiosSecure = useAxiosSecure();
-    const assignment = useLoaderData();
     const navigate = useNavigate();
     const [error, setError] = useState("");
-    const { _id, title, description, difficulty, marks, image, dueDate } = assignment.data;
+    const { _id, title, description, difficulty, marks, image, dueDate } = assignment;
+
+    useEffect(() => {
+        axiosSecure.get(`/assignment/${id}`)
+            .then(res => setAssignment(res.data));
+    }, []);
 
     const handleUpdate = (e) => {
         e.preventDefault();
@@ -51,7 +57,7 @@ const UpdateAssignment = () => {
     };
 
     return (
-        <div className="max-w-3xl mx-auto p-6 bg-white rounded-xl shadow-md my-5">
+        <div className="max-w-3xl mx-auto p-6 bg-white rounded-xl shadow-md my-5 text-center">
             <h1 className="text-3xl font-bold text-[#1E3A8A] mb-2">Update Assignment</h1>
             <p className="text-gray-600 mb-6">Make changes to your assignment and update it below.</p>
 

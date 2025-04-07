@@ -1,15 +1,17 @@
-import { useState } from "react";
-import { useLoaderData } from "react-router-dom";
+import { useEffect, useState } from "react";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 import { toast } from "react-toastify";
 
 const PendingAssignments = () => {
     const axiosSecure = useAxiosSecure();
-    const assignments = useLoaderData();
-    const submissions = assignments.data;
+    const [assignments, setAssignments] = useState([]);
     const [selectedSubmission, setSelectedSubmission] = useState(null);
     const [showModal, setShowModal] = useState(false);
+    useEffect(() => {
+        axiosSecure.get(`/pending`)
+            .then(res => setAssignments(res.data));
+    }, [assignments]);
 
     const openModal = (submission) => {
         setSelectedSubmission(submission);
@@ -40,13 +42,12 @@ const PendingAssignments = () => {
                         text: "Assignment mark given successful",
                         icon: "success"
                     });
-                    window.location.reload();
                 }
             });
     };
 
     // Filter only pending assignments
-    const pendingList = submissions?.filter((s) => s.status === "pending");
+    const pendingList = assignments?.filter((s) => s.status === "pending");
 
     return (
         <div className="text-center max-w-2xl mx-auto mb-5">

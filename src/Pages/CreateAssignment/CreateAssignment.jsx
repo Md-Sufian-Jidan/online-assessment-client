@@ -22,15 +22,15 @@ const CreateAssignment = () => {
         // console.log(assignment);
         axiosSecure.post('/create-assignment', assignment)
             .then(res => {
-                // console.log(res.data);
+                console.log(res);
                 if (res.data.insertedId) {
                     form.reset();
                     return toast.success('Assignment Created Successfully');
                 }
             })
-            .catch(err => {
-                // console.log(err);
-                return toast.error(err.message);
+            .catch(error => {
+                console.log(error);
+                return toast.error(error.message);
             });
     };
 

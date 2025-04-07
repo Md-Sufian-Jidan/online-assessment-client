@@ -10,6 +10,7 @@ import PendingAssignments from "../Pages/PendingAssignments/PendingAssignments";
 import PrivateRoute from "../Providers/PrivateRoute";
 import ViewAssignment from "../Pages/Assignments/ViewAssignment";
 import UpdateAssignment from "../Pages/Assignments/UpdateAssignment";
+import MySubmission from "../Pages/MySubmission/MySubmission";
 
 const router = createBrowserRouter([
     {
@@ -32,29 +33,18 @@ const router = createBrowserRouter([
             {
                 path: "/view/:id",
                 element: <PrivateRoute><ViewAssignment /></PrivateRoute>,
-                loader: async ({ params }) => {
-                    const { default: useAxiosSecure } = await import("../Hooks/useAxiosSecure");
-                    const axiosSecure = useAxiosSecure();
-                    return axiosSecure.get(`/assignment/${params?.id}`);
-                },
             },
             {
                 path: "/update/:id",
                 element: <PrivateRoute><UpdateAssignment /></PrivateRoute>,
-                loader: async ({ params }) => {
-                    const { default: useAxiosSecure } = await import("../Hooks/useAxiosSecure");
-                    const axiosSecure = useAxiosSecure();
-                    return axiosSecure.get(`/assignment/${params?.id}`);
-                },
             },
             {
                 path: "/pending-assignments",
                 element: <PrivateRoute><PendingAssignments /></PrivateRoute>,
-                loader: async () => {
-                    const { default: useAxiosSecure } = await import("../Hooks/useAxiosSecure");
-                    const axiosSecure = useAxiosSecure();
-                    return axiosSecure.get("/pending");
-                },
+            },
+            {
+                path: "/my-submission",
+                element: <PrivateRoute><MySubmission /></PrivateRoute>,
             },
             {
                 path: "/login",

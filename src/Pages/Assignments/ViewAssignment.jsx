@@ -1,14 +1,23 @@
-import { useLoaderData } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
 const ViewAssignment = () => {
     const { user } = useAuth();
+    const { id } = useParams();
     const axiosSecure = useAxiosSecure();
-    const assignment = useLoaderData();
-    const { title, description, difficulty, marks, image, dueDate } = assignment.data;
+    const [assignment, setAssignment] = useState([]);
+    const { title, description, difficulty, marks, image, dueDate } = assignment;
+
+    useEffect(() => {
+        axiosSecure.get(`/assignment/${id}`)
+            .then(res => {
+                setAssignment(res?.data);
+                console.log(res);
+            });
+    }, []);
 
     const [showModal, setShowModal] = useState(false);
 
@@ -22,7 +31,7 @@ const ViewAssignment = () => {
         }
         // Submitted assignment data
         const submittedAssignment = {
-            assignment: assignment.data,
+            assignment: assignment,
             submittedBy: user?.email,
             pdfLink,
             note,

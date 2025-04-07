@@ -9,29 +9,26 @@ const axiosSecure = axios.create({
 });
 
 const useAxiosSecure = () => {
+
     const { logOut } = useAuth();
     const navigate = useNavigate();
 
-    useEffect(() => {
-        const interceptor = axiosSecure.interceptors.response.use(
-            res => res,
-            error => {
-                console.log("Error tracked in the interceptor:", error.response);
-                if (error.response?.status === 401) {
-                    console.log("Logging out the user...");
-                    logOut()
-                        .then(() => navigate('/login'))
-                        .catch(err => console.log(err));
-                }
-                return Promise.reject(error); // Always return the rejected error
-            }
-        );
-
-        // Cleanup interceptor on unmount
-        return () => {
-            axiosSecure.interceptors.response.eject(interceptor);
-        };
-    }, [logOut, navigate]);
+    // useEffect(() => {
+    //     axiosSecure.interceptors.response.use(res => {
+    //         return res;
+    //     }, error => {
+    //         console.log(`error tracked in the interceptor`, error.response);
+    //         if (error?.response?.status === 401) {
+    //             console.log('logout the user');
+    //             logOut()
+    //                 .then(() => { })
+    //                 .catch(error => {
+    //                     console.log(error)
+    //                     return navigate('/login');
+    //                 });
+    //         }
+    //     })
+    // }, [logOut, navigate]);
 
     return axiosSecure;
 };
