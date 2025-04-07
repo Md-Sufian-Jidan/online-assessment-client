@@ -6,7 +6,7 @@ const ViewAssignment = () => {
     const { user } = useAuth();
     const assignment = useLoaderData();
     const { title, description, difficulty, marks, image, dueDate } = assignment.data;
-    console.log(assignment);
+    // console.log(assignment);
 
     return (
         <>

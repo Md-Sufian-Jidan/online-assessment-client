@@ -33,10 +33,6 @@ const AssignmentCard = ({ assignment, currentUserEmail, setAssignments, assignme
         });
     };
 
-    const handleUpdate = () => {
-
-    };
-
     return (
         <div className="bg-white shadow-md rounded-xl overflow-hidden border border-gray-100 hover:shadow-lg transition-all duration-300 relative">
             <img
@@ -65,12 +61,11 @@ const AssignmentCard = ({ assignment, currentUserEmail, setAssignments, assignme
                             View
                         </button>
                     </Link>
-                    <button
-                        onClick={() => handleUpdate(_id)}
-                        className="flex-1 bg-yellow-400 hover:bg-yellow-500 text-white py-2 rounded-lg font-medium transition"
-                    >
-                        Update
-                    </button>
+                    <Link to={`/update/${_id}`} className="flex-1 bg-yellow-400 hover:bg-yellow-500 text-white py-2 rounded-lg font-medium transition">
+                        <button>
+                            Update
+                        </button>
+                    </Link>
 
                     {email === currentUserEmail && (
                         <button

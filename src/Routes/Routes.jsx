@@ -10,6 +10,7 @@ import PendingAssignments from "../Pages/PendingAssignments/PendingAssignments";
 import PrivateRoute from "../Providers/PrivateRoute";
 import ViewAssignment from "../Pages/Assignments/ViewAssignment";
 import useAxiosSecure from "../Hooks/useAxiosSecure";
+import UpdateAssignment from "../Pages/Assignments/UpdateAssignment";
 
 const axiosSecure = useAxiosSecure();
 
@@ -34,6 +35,11 @@ export const router = createBrowserRouter([
             {
                 path: '/view/:id',
                 element: <PrivateRoute><ViewAssignment /></PrivateRoute>,
+                loader: ({ params }) => axiosSecure.get(`/assignment/${params?.id}`)
+            },
+            {
+                path: '/update/:id',
+                element: <PrivateRoute><UpdateAssignment /></PrivateRoute>,
                 loader: ({ params }) => axiosSecure.get(`/assignment/${params?.id}`)
             },
             {
