@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import useAuth from "../../Hooks/useAuth";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import AssignmentPreview from "./AssignmentPreview";
+import { Link } from "react-router-dom";
 
 const MySubmission = () => {
     const { user } = useAuth();
@@ -10,9 +12,9 @@ const MySubmission = () => {
     useEffect(() => {
         if (user?.email) {
             axiosSecure.get(`/my-submissions/${user.email}`)
-            .then((res) => {
-                setSubmittedAssignments(res.data);
-            });
+                .then((res) => {
+                    setSubmittedAssignments(res.data);
+                });
         }
     }, [user, axiosSecure]);
 
@@ -68,6 +70,11 @@ const MySubmission = () => {
                     ))}
                 </div>
             )}
+            <div className="space-y-10 mt-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+                {submittedAssignments.map((submission) => (
+                    <AssignmentPreview key={submission._id} submission={submission} />
+                ))}
+            </div>
         </div>
     );
 };

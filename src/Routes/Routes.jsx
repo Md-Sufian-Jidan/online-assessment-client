@@ -11,6 +11,8 @@ import PrivateRoute from "../Providers/PrivateRoute";
 import ViewAssignment from "../Pages/Assignments/ViewAssignment";
 import UpdateAssignment from "../Pages/Assignments/UpdateAssignment";
 import MySubmission from "../Pages/MySubmission/MySubmission";
+import AssignmentPreview from "../Pages/MySubmission/AssignmentPreview";
+import LeaderBoard from "../Pages/LeaderBoard/LeaderBoard";
 
 const router = createBrowserRouter([
     {
@@ -45,6 +47,10 @@ const router = createBrowserRouter([
             {
                 path: "/my-submission",
                 element: <PrivateRoute><MySubmission /></PrivateRoute>,
+            },
+            {
+                path: "/leader-board",
+                element: <PrivateRoute><LeaderBoard /></PrivateRoute>,
             },
             {
                 path: "/login",

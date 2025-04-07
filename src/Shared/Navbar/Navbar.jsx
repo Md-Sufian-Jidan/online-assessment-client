@@ -11,7 +11,10 @@ const Navbar = () => {
         <li><NavLink to={'/assignments'} className={({ isActive }) => isActive === true ? 'text-[#337ce4] font-extrabold btn mr-2' : 'mr-2 font-medium btn hover:bg-[#38BDF8] hover:text-[#3B82F6'}>Assignments</NavLink></li>
         <li><NavLink to={'/pending-assignments'} className={({ isActive }) => isActive === true ? 'text-[#337ce4] font-extrabold btn mr-2' : 'mr-2 font-medium btn hover:bg-[#38BDF8] hover:text-[#3B82F6'}>Pending Assignments</NavLink></li>
         {
-            user && <li><NavLink to={'/my-submission'} className={({ isActive }) => isActive === true ? 'text-[#337ce4] font-extrabold btn mr-2' : 'mr-2 font-medium btn hover:bg-[#38BDF8] hover:text-[#3B82F6'}>My Submission</NavLink></li>
+            user && <>
+                <li><NavLink to={'/my-submission'} className={({ isActive }) => isActive === true ? 'text-[#337ce4] font-extrabold btn mr-2' : 'mr-2 font-medium btn hover:bg-[#38BDF8] hover:text-[#3B82F6'}>My Submission</NavLink></li>
+                <li><NavLink to={'/leader-board'} className={({ isActive }) => isActive === true ? 'text-[#337ce4] font-extrabold btn mr-2' : 'mr-2 font-medium btn hover:bg-[#38BDF8] hover:text-[#3B82F6'}>Leader Board</NavLink></li>
+            </>
         }
     </>;
 
