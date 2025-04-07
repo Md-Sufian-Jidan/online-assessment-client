@@ -5,10 +5,10 @@ import { toast } from "react-toastify";
 const Navbar = () => {
     const { user, logOut } = useAuth();
     const navLinks = <>
-        <li><NavLink to={'/'} className={({ isActive }) => isActive === true ? 'text-[#334155] font-extrabold btn mr-2' : 'mr-2 font-medium btn hover:bg-[#38BDF8] hover:text-[#3B82F6'}>Home</NavLink></li>
-        <li><NavLink to={'/create-assignment'} className={({ isActive }) => isActive === true ? 'text-[#334155] font-extrabold btn mr-2' : 'mr-2 font-medium btn hover:bg-[#38BDF8] hover:text-[#3B82F6'}>Create Assignment</NavLink></li>
-        <li><NavLink to={'/assignments'} className={({ isActive }) => isActive === true ? 'text-[#334155] font-extrabold btn mr-2' : 'mr-2 font-medium btn hover:bg-[#38BDF8] hover:text-[#3B82F6'}>Assignments</NavLink></li>
-        <li><NavLink to={'/pending-assignments'} className={({ isActive }) => isActive === true ? 'text-[#334155] font-extrabold btn mr-2' : 'mr-2 font-medium btn hover:bg-[#38BDF8] hover:text-[#3B82F6'}>Pending Assignments</NavLink></li>
+        <li><NavLink to={'/'} className={({ isActive }) => isActive === true ? 'text-[#337ce4] font-extrabold btn mr-2' : 'mr-2 font-medium btn hover:bg-[#38BDF8] hover:text-[#3B82F6'}>Home</NavLink></li>
+        <li><NavLink to={'/create-assignment'} className={({ isActive }) => isActive === true ? 'text-[#337ce4] font-extrabold btn mr-2' : 'mr-2 font-medium btn hover:bg-[#38BDF8] hover:text-[#3B82F6'}>Create Assignment</NavLink></li>
+        <li><NavLink to={'/assignments'} className={({ isActive }) => isActive === true ? 'text-[#337ce4] font-extrabold btn mr-2' : 'mr-2 font-medium btn hover:bg-[#38BDF8] hover:text-[#3B82F6'}>Assignments</NavLink></li>
+        <li><NavLink to={'/pending-assignments'} className={({ isActive }) => isActive === true ? 'text-[#337ce4] font-extrabold btn mr-2' : 'mr-2 font-medium btn hover:bg-[#38BDF8] hover:text-[#3B82F6'}>Pending Assignments</NavLink></li>
     </>;
 
     const handleLogOut = () => {
@@ -22,7 +22,7 @@ const Navbar = () => {
     };
 
     return (
-        <div className="navbar bg-blue-100 rounded-lg">
+        <div className="navbar bg-violet-100 rounded-b-lg fixed max-w-7xl mx-auto z-50">
             <div className="navbar-start">
                 <div className="dropdown">
                     <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">

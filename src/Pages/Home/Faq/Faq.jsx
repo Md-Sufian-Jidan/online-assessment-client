@@ -13,9 +13,9 @@ const Faq = () => {
                 </p>
             </div>
 
-            <div className='flex lg:flex-row gap-5'>
+            <div className='flex lg:flex-row flex-col gap-5'>
                 <div>
-                    <img className='max-w-2xl' src="https://i.ibb.co/m5V4j0mM/faq.png" alt="" />
+                    <img className='w-full max-w-2xl' src="https://i.ibb.co/m5V4j0mM/faq.png" alt="" />
                 </div>
                 <div>
                     <div className="collapse collapse-plus bg-base-100 border border-base-300">

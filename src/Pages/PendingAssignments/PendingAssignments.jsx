@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import Swal from "sweetalert2";
+import { toast } from "react-toastify";
 
 const PendingAssignments = () => {
     const axiosSecure = useAxiosSecure();
@@ -9,9 +10,6 @@ const PendingAssignments = () => {
     const submissions = assignments.data;
     const [selectedSubmission, setSelectedSubmission] = useState(null);
     const [showModal, setShowModal] = useState(false);
-    // Filter only pending assignments
-    const pendingList = submissions?.filter((s) => s.status === "pending");
-    const [pending, setPending] = useState(pendingList);
 
     const openModal = (submission) => {
         setSelectedSubmission(submission);
@@ -23,7 +21,7 @@ const PendingAssignments = () => {
         const givenMark = e.target.marks.value;
         const feedback = e.target.feedback.value;
 
-        if (!givenMark || !feedback) return;
+        if (!givenMark || !feedback) return toast.error('All field required');
 
         const updatedSubmission = {
             ...selectedSubmission,
@@ -42,15 +40,16 @@ const PendingAssignments = () => {
                         text: "Assignment mark given successful",
                         icon: "success"
                     });
-                    const pendingList = submissions?.filter((s) => s.status === "pending");
-                    setPending(pendingList);
+                    window.location.reload();
                 }
             });
     };
 
+    // Filter only pending assignments
+    const pendingList = submissions?.filter((s) => s.status === "pending");
 
     return (
-        <div className="max-w-6xl mx-auto p-6">
+        <div className="text-center max-w-2xl mx-auto mb-5">
             <h1 className="text-3xl font-bold text-[#1E3A8A] mb-2">Pending Assignments</h1>
             <p className="text-gray-600 mb-6">Review and mark assignments submitted by students.</p>
 
@@ -58,7 +57,7 @@ const PendingAssignments = () => {
                 <p className="text-gray-500">No pending assignments to mark.</p>
             ) : (
                 <div className="space-y-4">
-                    {pending.map((item) => (
+                    {pendingList.map((item) => (
                         <div
                             key={item._id}
                             className="border rounded-lg p-4 flex justify-between items-center shadow"
