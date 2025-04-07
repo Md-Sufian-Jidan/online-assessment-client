@@ -1,6 +1,7 @@
 import { Link, NavLink } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
 import { toast } from "react-toastify";
+import ThemeToggle from "../ThemeToggle/ThemeToggle";
 
 const Navbar = () => {
     const { user, logOut } = useAuth();
@@ -25,7 +26,7 @@ const Navbar = () => {
     };
 
     return (
-        <div className="navbar bg-violet-100 rounded-b-lg fixed max-w-7xl mx-auto z-50">
+        <div className="navbar bg-violet-100 rounded-b-lg">
             <div className="navbar-start">
                 <div className="dropdown">
                     <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -45,6 +46,7 @@ const Navbar = () => {
                 </ul>
             </div>
             <div className="navbar-end space-x-2">
+                <ThemeToggle />
                 {
                     user && <div className="dropdown dropdown-end">
                         <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">

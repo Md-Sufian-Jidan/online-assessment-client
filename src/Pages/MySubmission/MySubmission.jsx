@@ -6,7 +6,6 @@ const MySubmission = () => {
     const { user } = useAuth();
     const axiosSecure = useAxiosSecure();
     const [submittedAssignments, setSubmittedAssignments] = useState([]);
-    console.log(user);
 
     useEffect(() => {
         if (user?.email) {
