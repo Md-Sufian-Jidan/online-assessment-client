@@ -6,14 +6,21 @@ import useAuth from "../../Hooks/useAuth";
 const Assignments = () => {
     const { user } = useAuth();
     const [assignments, setAssignments] = useState([]);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [totalPages, setTotalPages] = useState(0);
+
     const [selected, setSelected] = useState("all");
     const axiosSecure = useAxiosSecure();
 
     useEffect(() => {
-        axiosSecure.get(`/assignments?difficulty=${selected}`)
-            .then(res => setAssignments(res.data));
-    }, [selected]);
-
+        axiosSecure.get(`/assignments?page=${currentPage}&limit=6&difficulty=${selected}`)
+            .then(res => {
+                console.log(res);
+                setAssignments(res.data.data);
+                setTotalPages(res.data.totalPages);
+            })
+            .catch(err => console.log(err));
+    }, [currentPage, selected]);
 
     const handleChange = (e) => {
         const value = e.target.value;
@@ -32,6 +39,7 @@ const Assignments = () => {
                 </p>
 
             </div>
+            {/* filter design */}
             <div className="mb-6 flex justify-center">
                 <select
                     value={selected}
@@ -44,6 +52,7 @@ const Assignments = () => {
                     <option value="hard">Hard</option>
                 </select>
             </div>
+            {/* assignments design */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-5">
                 {/* AssignmentCard goes here */}
                 {
@@ -56,6 +65,35 @@ const Assignments = () => {
                     />)
                 }
             </div>
+            {/* pagination design */}
+            <div className="flex justify-center space-x-2 mt-4">
+                <button
+                    disabled={currentPage === 1}
+                    onClick={() => setCurrentPage(prev => prev - 1)}
+                    className="px-3 py-1 bg-blue-500 text-white rounded disabled:opacity-50"
+                >
+                    Prev
+                </button>
+
+                {[...Array(totalPages).keys()]?.map(num => (
+                    <button
+                        key={num}
+                        onClick={() => setCurrentPage(num + 1)}
+                        className={`px-3 py-1 rounded ${currentPage === num + 1 ? 'bg-blue-700 text-white' : 'bg-gray-200'}`}
+                    >
+                        {num + 1}
+                    </button>
+                ))}
+
+                <button
+                    disabled={currentPage === totalPages}
+                    onClick={() => setCurrentPage(prev => prev + 1)}
+                    className="px-3 py-1 bg-blue-500 text-white rounded disabled:opacity-50"
+                >
+                    Next
+                </button>
+            </div>
+
         </>
     );
 };
