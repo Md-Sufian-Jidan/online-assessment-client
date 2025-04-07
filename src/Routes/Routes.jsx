@@ -8,6 +8,10 @@ import CreateAssignment from "../Pages/CreateAssignment/CreateAssignment";
 import Assignments from "../Pages/Assignments/Assignments";
 import PendingAssignments from "../Pages/PendingAssignments/PendingAssignments";
 import PrivateRoute from "../Providers/PrivateRoute";
+import ViewAssignment from "../Pages/Assignments/ViewAssignment";
+import useAxiosSecure from "../Hooks/useAxiosSecure";
+
+const axiosSecure = useAxiosSecure();
 
 export const router = createBrowserRouter([
     {
@@ -26,6 +30,11 @@ export const router = createBrowserRouter([
             {
                 path: '/assignments',
                 element: <Assignments />,
+            },
+            {
+                path: '/view/:id',
+                element: <ViewAssignment />,
+                loader: ({ params }) => axiosSecure.get(`/assignment/${params?.id}`)
             },
             {
                 path: '/pending-assignments',

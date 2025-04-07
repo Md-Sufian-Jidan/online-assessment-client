@@ -1,6 +1,7 @@
+import { Link } from "react-router-dom";
 
 const AssignmentCard = (assignment) => {
-    const { title, description, difficulty, marks, image, dueDate } = assignment?.assignment;
+    const { _id, title, description, difficulty, marks, image, dueDate } = assignment?.assignment;
     return (
         <div className="bg-white shadow-md rounded-xl overflow-hidden border border-gray-100 hover:shadow-lg transition-all duration-300">
             {/* Assignment Image */}
@@ -30,9 +31,11 @@ const AssignmentCard = (assignment) => {
 
                 {/* Button */}
                 <div className="pt-4">
-                    <button className="w-full bg-[#3B82F6] text-white font-semibold py-2 rounded-lg hover:bg-[#2563EB] transition">
-                        View Assignment
-                    </button>
+                    <Link to={`/view/${_id}`}>
+                        <button className="w-full bg-[#3B82F6] text-white font-semibold py-2 rounded-lg hover:bg-[#2563EB] transition">
+                            View Assignment
+                        </button>
+                    </Link>
                 </div>
             </div>
         </div>
