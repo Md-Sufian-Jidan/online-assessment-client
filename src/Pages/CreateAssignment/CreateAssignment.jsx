@@ -19,16 +19,17 @@ const CreateAssignment = () => {
         const image = form.photoUrl.value;
         const dueDate = form.date.value;
         const assignment = { title, description, difficulty, marks, image, dueDate, email };
-        console.log(assignment);
+        // console.log(assignment);
         axiosSecure.post('/create-assignment', assignment)
             .then(res => {
-                console.log(res.data);
+                // console.log(res.data);
                 if (res.data.insertedId) {
+                    form.reset();
                     return toast.success('Assignment Created Successfully');
                 }
             })
             .catch(err => {
-                console.log(err);
+                // console.log(err);
                 return toast.error(err.message);
             });
     };

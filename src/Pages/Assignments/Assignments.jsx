@@ -1,15 +1,18 @@
 import { useEffect, useState } from "react";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import AssignmentCard from "./AssignmentCard";
+import useAuth from "../../Hooks/useAuth";
 
 const Assignments = () => {
+    const { user } = useAuth();
     const [assignments, setAssignments] = useState([]);
     const axiosSecure = useAxiosSecure();
+
     useEffect(() => {
         axiosSecure.get('/assignments')
             .then(res => setAssignments(res.data));
     }, []);
-    
+
     return (
         <>
             <div className="text-center max-w-2xl mx-auto mb-10">
@@ -25,7 +28,13 @@ const Assignments = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-5">
                 {/* AssignmentCard goes here */}
                 {
-                    assignments?.map(assignment => <AssignmentCard key={assignment?._id} assignment={assignment} />)
+                    assignments?.map(assignment => <AssignmentCard
+                        key={assignment?._id}
+                        assignment={assignment}
+                        currentUserEmail={user?.email}
+                        setAssignments={setAssignments}
+                        assignments={assignments}
+                    />)
                 }
             </div>
         </>

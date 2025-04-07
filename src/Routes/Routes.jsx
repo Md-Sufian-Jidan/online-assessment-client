@@ -33,7 +33,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/view/:id',
-                element: <ViewAssignment />,
+                element: <PrivateRoute><ViewAssignment /></PrivateRoute>,
                 loader: ({ params }) => axiosSecure.get(`/assignment/${params?.id}`)
             },
             {
