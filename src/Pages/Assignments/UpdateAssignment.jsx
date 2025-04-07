@@ -45,9 +45,9 @@ const UpdateAssignment = () => {
                         text: "Assignment Updated Successfully?",
                         icon: "success"
                     });
-                    return navigate('/assignments')
+                    return navigate('/assignments');
                 }
-            })
+            });
     };
 
     return (
