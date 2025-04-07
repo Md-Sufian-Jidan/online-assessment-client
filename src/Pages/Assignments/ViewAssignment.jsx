@@ -9,8 +9,7 @@ const ViewAssignment = () => {
     const { user } = useAuth();
     const axiosSecure = useAxiosSecure();
     const assignment = useLoaderData();
-    const { _id, title, description, difficulty, marks, image, dueDate } = assignment.data;
-    // console.log(assignment);
+    const { title, description, difficulty, marks, image, dueDate } = assignment.data;
 
     const [showModal, setShowModal] = useState(false);
 
@@ -25,20 +24,19 @@ const ViewAssignment = () => {
 
         // Submitted assignment data
         const submittedAssignment = {
-            assignmentId: _id,
+            assignment: assignment.data,
             submittedBy: user?.email,
             pdfLink,
             note,
             status: "pending",
         };
 
-        // You can send this to your backend/database here
-
+        // sending data to backend/database here
         axiosSecure.post(`/submit-assignment`, submittedAssignment)
             .then(res => {
                 if (res.data.insertedId) {
                     setShowModal(false);
-                    console.log("Submitted Assignment:", submittedAssignment);
+                    // console.log("Submitted Assignment:", submittedAssignment);
                     return toast.success("✅ Assignment submitted successfully!");
                 }
             })

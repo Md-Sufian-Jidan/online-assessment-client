@@ -44,7 +44,8 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/pending-assignments',
-                element: <PrivateRoute><PendingAssignments /></PrivateRoute>
+                element: <PrivateRoute><PendingAssignments /></PrivateRoute>,
+                loader: () => axiosSecure.get('/pending')
             },
             {
                 path: '/login',
