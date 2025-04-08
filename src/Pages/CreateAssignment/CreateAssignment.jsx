@@ -21,6 +21,9 @@ const CreateAssignment = () => {
         const dueDate = form.date.value;
         const assignment = { title, description, difficulty, marks, image, dueDate, email };
         // console.log(assignment);
+        if(!difficulty){
+            return toast.error('set the difficulty level');
+        }
         axiosSecure.post('/create-assignment', assignment)
             .then(res => {
                 console.log(res);
@@ -57,6 +60,7 @@ const CreateAssignment = () => {
                         placeholder="Enter title"
                         className="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
                         name="title"
+                        required
                     />
                 </div>
 
@@ -68,6 +72,7 @@ const CreateAssignment = () => {
                         placeholder="Describe the assignment..."
                         className="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
                         name="description"
+                        required
                     ></textarea>
                 </div>
 
@@ -79,6 +84,7 @@ const CreateAssignment = () => {
                         placeholder="e.g. 100"
                         className="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
                         name="marks"
+                        required
                     />
                 </div>
 
@@ -90,6 +96,7 @@ const CreateAssignment = () => {
                         placeholder="Paste image URL here"
                         className="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
                         name="photoUrl"
+                        required
                     />
                 </div>
 
@@ -114,6 +121,7 @@ const CreateAssignment = () => {
                         type="date"
                         className="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
                         name="date"
+                        required
                     />
                 </div>
 

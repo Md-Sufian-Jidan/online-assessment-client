@@ -14,22 +14,22 @@ const useAxiosSecure = () => {
     const { logOut } = useAuth();
     const navigate = useNavigate();
 
-    // useEffect(() => {
-    //     axiosSecure.interceptors.response.use(res => {
-    //         return res;
-    //     }, error => {
-    //         console.log(`error tracked in the interceptor`, error.response);
-    //         if (error?.response?.status === 401) {
-    //             console.log('logout the user');
-    //             logOut()
-    //                 .then(() => { })
-    //                 .catch(error => {
-    //                     console.log(error)
-    //                     return navigate('/login');
-    //                 });
-    //         }
-    //     })
-    // }, [logOut, navigate]);
+    useEffect(() => {
+        axiosSecure.interceptors.response.use(res => {
+            return res;
+        }, error => {
+            console.log(`error tracked in the interceptor`, error.response);
+            if (error?.response?.status === 401) {
+                console.log('logout the user');
+                logOut()
+                    .then(() => { })
+                    .catch(error => {
+                        console.log(error)
+                        return navigate('/login');
+                    });
+            }
+        })
+    }, [logOut, navigate]);
 
     return axiosSecure;
 };

@@ -38,7 +38,7 @@ const LeaderBoard = () => {
                             {leaders.map((user, index) => (
                                 <tr key={index} className="border-t hover:bg-gray-100">
                                     <td className="py-2 px-4 font-semibold">{index + 1}</td>
-                                    <td className="py-2 px-4">{user.name || "Unknown"}</td>
+                                    <td className="py-2 px-4">{user.submittedUserName || "Unknown"}</td>
                                     <td className="py-2 px-4">{user.submittedBy}</td>
                                     {/* <td className="py-2 px-4 text-green-700 font-bold">{user.averageMark.toFixed(2)}</td>
                                 <td className="py-2 px-4">{user.completedAssignments}</td> */}

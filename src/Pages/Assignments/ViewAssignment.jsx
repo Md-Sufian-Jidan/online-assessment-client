@@ -34,6 +34,7 @@ const ViewAssignment = () => {
         const submittedAssignment = {
             assignment: assignment,
             submittedBy: user?.email,
+            submittedUserName: user?.displayName,
             pdfLink,
             note,
             status: "pending",
@@ -45,7 +46,7 @@ const ViewAssignment = () => {
                 if (res.data.insertedId) {
                     setShowModal(false);
                     // console.log("Submitted Assignment:", submittedAssignment);
-                    return toast.success("✅ Assignment submitted successfully!");
+                    return toast.success("Assignment submitted successfully!");
                 }
             })
     };
