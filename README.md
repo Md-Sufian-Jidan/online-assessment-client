@@ -6,7 +6,7 @@ StudySync is a full-stack online assessment web application designed to allow us
 
 ## 🚀 Live Demo
 
-- 🌐 Client: [https://online-assessment-client.web.app]()
+- 🌐 Client: [https://online-assessment-client.web.app](https://online-assessment-client.web.app)
 - 🌐 Server: [https://study-sync-server.vercel.app](https://study-sync-server.vercel.app)
 
 ---
@@ -57,3 +57,17 @@ StudySync is a full-stack online assessment web application designed to allow us
 3. Submit completed work via PDF with notes.
 4. Teachers/admins can mark and leave feedback.
 5. View leaderboard, track your progress, and explore new assignments.
+
+---
+
+## ⚙️ Setup Instructions
+
+### 🔧 Clone the repo
+
+```bash
+git clone https://github.com/Md-Sufian-Jidan/online-assessment-client.git
+cd online-assessment-client
+
+```bash
+npm install
+npm run dev
