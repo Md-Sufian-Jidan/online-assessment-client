@@ -40,7 +40,7 @@ const CreateAssignment = () => {
             <Helmet>
                 <title>StudySync | Create Assignment</title>
             </Helmet>
-            <div className="text-center max-w-2xl mx-auto mb-10">
+            <div className="text-center max-w-2xl mx-auto my-10">
                 <h2 className="text-3xl md:text-4xl font-bold text-[#1E3A8A] mb-4">
                     Create a New Assignment
                 </h2>
@@ -48,7 +48,7 @@ const CreateAssignment = () => {
                     Fill in the details below to assign a new task to your class or group. Share deadlines, instructions, and let the learning begin!
                 </p>
             </div>
-            <form onSubmit={createAssignment} className="max-w-3xl mx-auto bg-white shadow-md rounded-2xl p-8 space-y-6 mb-5">
+            <form onSubmit={createAssignment} className="max-w-3xl mx-auto bg-white dark:bg-gray-200 shadow-md rounded-2xl p-8 space-y-6 mb-5">
                 {/* Title */}
                 <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">Assignment Title</label>

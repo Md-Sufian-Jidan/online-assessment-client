@@ -16,10 +16,7 @@ const AssignmentPreview = ({ submission }) => {
                 <p><span className="font-semibold">Note:</span> {note}</p>
                 {status === 'completed' && (
                     <>
-                        <p className="text-sm text-gray-700 mt-1">
-                            📝 <span className="font-semibold">Feedback:</span>{" "}
-                            {feedback ? feedback : "No feedback yet"}
-                        </p>
+                        <p><span className="font-semibold">Feedback:</span> {feedback}</p>
                         <p><span className="font-semibold">Given Mark:</span> {givenMark} / {assignment?.marks}</p>
                     </>
                 )}

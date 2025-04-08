@@ -1,12 +1,59 @@
-# React + Vite
+# 📘 StudySync - Online Assessment Platform
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+StudySync is a full-stack online assessment web application designed to allow users to create, submit, evaluate, and manage assignments. Built with React, Node.js, Express, and MongoDB, it provides a seamless experience for both students and instructors.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Live Demo
 
-## Expanding the ESLint configuration
+- 🌐 Client: [https://online-assessment-client.web.app]()
+- 🌐 Server: [https://study-sync-server.vercel.app](https://study-sync-server.vercel.app)
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## 🛠️ Tech Stack
+
+**Frontend:**
+- React.js
+- Tailwind CSS
+- React Router DOM
+- Axios
+- SweetAlert2
+- React Toastify
+- React Icons
+- JWT for auth
+
+**Backend:**
+- Node.js
+- Express.js
+- MongoDB
+- JWT
+- CORS
+- Cookies
+
+---
+
+## ✨ Features
+
+- 👤 User Authentication (Login/Register with JWT)
+- 📝 Create Assignments (Title, Marks, Difficulty, Due Date, PDF Link)
+- 📂 View Assignments by Difficulty with Filters
+- 🔐 Protected Routes
+- 📥 Submit Assignments
+- ✅ Mark and Give Feedback to Submissions
+- 🌑 Light/Dark Mode Toggle
+- 🔎 View Submitted PDF via iframe Preview
+- 📊 Leaderboard Based on Obtained Marks
+- 📈 Pagination on Assignments List
+- 📚 My Submissions Page (Shows your attempted assignments)
+- 📎 Feature Add-on: Favorites (Mark assignments to favorite and view later)
+
+---
+
+## 🧪 How It Works
+
+1. Register/Login to your account.
+2. Browse or create assignments based on your role.
+3. Submit completed work via PDF with notes.
+4. Teachers/admins can mark and leave feedback.
+5. View leaderboard, track your progress, and explore new assignments.
