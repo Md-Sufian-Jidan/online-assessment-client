@@ -2,7 +2,8 @@ import useFeatures from "../../../../Hooks/useFeatures";
 import FeatureCard from "../FeatureCard/FeatureCard";
 
 const Features = () => {
-    const { features } = useFeatures();
+    const { features, loading } = useFeatures();
+    if (loading) return <div className=" h-16 border-4 border-dashed rounded-full animate-spin dark:border-violet-600 mx-auto max-w-16"></div>
 
     return (
         <div className="my-5">

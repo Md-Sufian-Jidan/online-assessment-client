@@ -34,7 +34,7 @@ const AssignmentCard = ({ assignment, currentUserEmail, setAssignments, assignme
     };
 
     return (
-        <div className="bg-white shadow-md rounded-xl overflow-hidden border border-gray-100 hover:shadow-lg transition-all duration-300 relative text-center">
+        <div className="bg-white shadow-md rounded-xl overflow-hidden border border-gray-100 hover:shadow-lg dark:bg-gray-200 transition-all duration-300 relative text-center">
             <img
                 src={image}
                 alt="Assignment cover"

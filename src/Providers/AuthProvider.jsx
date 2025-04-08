@@ -2,7 +2,6 @@ import { createUserWithEmailAndPassword, GithubAuthProvider, GoogleAuthProvider,
 import { createContext, useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import auth from "../Firebase/Firebase.config";
-import axios from "axios";
 
 export const AuthContext = createContext(null);
 

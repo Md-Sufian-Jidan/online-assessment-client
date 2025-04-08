@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 import { toast } from "react-toastify";
+import { Helmet } from "react-helmet";
 
 const PendingAssignments = () => {
     const axiosSecure = useAxiosSecure();
@@ -50,95 +51,100 @@ const PendingAssignments = () => {
     const pendingList = assignments?.filter((s) => s.status === "pending");
 
     return (
-        <div className="text-center max-w-2xl mx-auto mb-5">
-            <h1 className="text-3xl font-bold text-[#1E3A8A] mb-2">Pending Assignments</h1>
-            <p className="text-gray-600 mb-6">Review and mark assignments submitted by students.</p>
+        <>
+            <Helmet>
+                <title>StudySync | Pending Assignments</title>
+            </Helmet>
+            <div className="text-center max-w-2xl mx-auto mb-5">
+                <h1 className="text-3xl font-bold text-[#1E3A8A] mb-2">Pending Assignments</h1>
+                <p className="text-gray-600 mb-6">Review and mark assignments submitted by students.</p>
 
-            {pendingList.length === 0 ? (
-                <p className="text-gray-500">No pending assignments to mark.</p>
-            ) : (
-                <div className="space-y-4">
-                    {pendingList.map((item) => (
-                        <div
-                            key={item._id}
-                            className="border rounded-lg p-4 flex justify-between items-center shadow"
-                        >
-                            <div>
-                                <h2 className="text-xl font-semibold text-[#1E40AF]">{item.assignment?.title}</h2>
-                                <p className="text-gray-700">Marks: {item.assignment?.marks}</p>
-                                <p className="text-sm text-gray-500">Submitted by: {item.submittedBy}</p>
-                            </div>
-                            <button
-                                onClick={() => openModal(item)}
-                                className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
+                {pendingList.length === 0 ? (
+                    <p className="text-gray-500">No pending assignments to mark.</p>
+                ) : (
+                    <div className="space-y-4">
+                        {pendingList.map((item) => (
+                            <div
+                                key={item._id}
+                                className="border rounded-lg p-4 flex justify-between items-center shadow"
                             >
-                                Give Mark
-                            </button>
-                        </div>
-                    ))}
-                </div>
-            )}
-
-            {/* Marking Modal */}
-            {showModal && selectedSubmission && (
-                <div className="fixed inset-0 bg-black bg-opacity-40 flex justify-center items-center z-50">
-                    <div className="bg-white p-6 rounded-lg shadow-md w-[90%] max-w-xl relative">
-                        <h2 className="text-xl font-bold text-[#1E3A8A] mb-4">Mark Assignment</h2>
-                        <form onSubmit={onMarkSubmit} className="space-y-4">
-                            <div>
-                                <p className="text-sm font-medium">📎 PDF/Doc Link:</p>
-                                <a
-                                    href={selectedSubmission.pdfLink}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="text-blue-600 underline"
-                                >
-                                    {selectedSubmission.pdfLink}
-                                </a>
-                            </div>
-                            <div>
-                                <p className="text-sm font-medium">📝 Note:</p>
-                                <p className="text-gray-700">{selectedSubmission.note}</p>
-                            </div>
-                            <div>
-                                <label className="block font-medium mb-1">Marks</label>
-                                <input
-                                    name="marks"
-                                    type="number"
-                                    className="w-full px-4 py-2 border rounded-md"
-                                    required
-                                />
-                            </div>
-                            <div>
-                                <label className="block font-medium mb-1">Feedback</label>
-                                <textarea
-                                    name="feedback"
-                                    rows="3"
-                                    className="w-full px-4 py-2 border rounded-md"
-                                    placeholder="Write feedback here..."
-                                    required
-                                ></textarea>
-                            </div>
-                            <div className="flex justify-end gap-3 pt-2">
+                                <div>
+                                    <h2 className="text-xl font-semibold text-[#1E40AF]">{item.assignment?.title}</h2>
+                                    <p className="text-gray-700">Marks: {item.assignment?.marks}</p>
+                                    <p className="text-sm text-gray-500">Submitted by: {item.submittedBy}</p>
+                                </div>
                                 <button
-                                    type="button"
-                                    onClick={() => setShowModal(false)}
-                                    className="px-4 py-2 bg-gray-200 rounded hover:bg-gray-300"
+                                    onClick={() => openModal(item)}
+                                    className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
                                 >
-                                    Cancel
-                                </button>
-                                <button
-                                    type="submit"
-                                    className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
-                                >
-                                    Submit Mark
+                                    Give Mark
                                 </button>
                             </div>
-                        </form>
+                        ))}
                     </div>
-                </div>
-            )}
-        </div>
+                )}
+
+                {/* Marking Modal */}
+                {showModal && selectedSubmission && (
+                    <div className="fixed inset-0 bg-black bg-opacity-40 flex justify-center items-center z-50">
+                        <div className="bg-white p-6 rounded-lg shadow-md w-[90%] max-w-xl relative">
+                            <h2 className="text-xl font-bold text-[#1E3A8A] mb-4">Mark Assignment</h2>
+                            <form onSubmit={onMarkSubmit} className="space-y-4">
+                                <div>
+                                    <p className="text-sm font-medium">📎 PDF/Doc Link:</p>
+                                    <a
+                                        href={selectedSubmission.pdfLink}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="text-blue-600 underline"
+                                    >
+                                        {selectedSubmission.pdfLink}
+                                    </a>
+                                </div>
+                                <div>
+                                    <p className="text-sm font-medium">📝 Note:</p>
+                                    <p className="text-gray-700">{selectedSubmission.note}</p>
+                                </div>
+                                <div>
+                                    <label className="block font-medium mb-1">Marks</label>
+                                    <input
+                                        name="marks"
+                                        type="number"
+                                        className="w-full px-4 py-2 border rounded-md"
+                                        required
+                                    />
+                                </div>
+                                <div>
+                                    <label className="block font-medium mb-1">Feedback</label>
+                                    <textarea
+                                        name="feedback"
+                                        rows="3"
+                                        className="w-full px-4 py-2 border rounded-md"
+                                        placeholder="Write feedback here..."
+                                        required
+                                    ></textarea>
+                                </div>
+                                <div className="flex justify-end gap-3 pt-2">
+                                    <button
+                                        type="button"
+                                        onClick={() => setShowModal(false)}
+                                        className="px-4 py-2 bg-gray-200 rounded hover:bg-gray-300"
+                                    >
+                                        Cancel
+                                    </button>
+                                    <button
+                                        type="submit"
+                                        className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+                                    >
+                                        Submit Mark
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                )}
+            </div>
+        </>
     );
 };
 

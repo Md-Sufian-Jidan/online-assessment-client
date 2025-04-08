@@ -3,6 +3,7 @@ import useAuth from "../../Hooks/useAuth";
 import { VscLoading } from "react-icons/vsc";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import { toast } from "react-toastify";
+import { Helmet } from "react-helmet";
 
 const CreateAssignment = () => {
     const { user, loading } = useAuth();
@@ -35,7 +36,10 @@ const CreateAssignment = () => {
     };
 
     return (
-        <div>
+        <>
+            <Helmet>
+                <title>StudySync | Create Assignment</title>
+            </Helmet>
             <div className="text-center max-w-2xl mx-auto mb-10">
                 <h2 className="text-3xl md:text-4xl font-bold text-[#1E3A8A] mb-4">
                     Create a New Assignment
@@ -128,7 +132,7 @@ const CreateAssignment = () => {
                     }
                 </div>
             </form>
-        </div>
+        </>
     );
 };
 

@@ -2,20 +2,19 @@ import { useEffect, useState } from "react";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import AssignmentCard from "./AssignmentCard";
 import useAuth from "../../Hooks/useAuth";
+import { Helmet } from "react-helmet";
 
 const Assignments = () => {
     const { user } = useAuth();
     const [assignments, setAssignments] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState(0);
-
     const [selected, setSelected] = useState("all");
     const axiosSecure = useAxiosSecure();
 
     useEffect(() => {
         axiosSecure.get(`/assignments?page=${currentPage}&limit=6&difficulty=${selected}`)
             .then(res => {
-                console.log(res);
                 setAssignments(res.data.data);
                 setTotalPages(res.data.totalPages);
             })
@@ -29,6 +28,9 @@ const Assignments = () => {
 
     return (
         <>
+            <Helmet>
+                <title>StudySync | Assignments</title>
+            </Helmet>
             <div className="text-center max-w-2xl mx-auto mb-10">
                 <h2 className="text-3xl md:text-4xl font-bold text-[#1E3A8A] mb-4">
                     Explore Assignments
@@ -44,7 +46,7 @@ const Assignments = () => {
                 <select
                     value={selected}
                     onChange={handleChange}
-                    className="border border-gray-300 text-sm rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="border border-gray-300 text-sm rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-300"
                 >
                     <option value="all">All Difficulties</option>
                     <option value="easy">Easy</option>
@@ -66,7 +68,7 @@ const Assignments = () => {
                 }
             </div>
             {/* pagination design */}
-            <div className="flex justify-center space-x-2 mt-4">
+            <div className="flex justify-center space-x-2 my-4">
                 <button
                     disabled={currentPage === 1}
                     onClick={() => setCurrentPage(prev => prev - 1)}

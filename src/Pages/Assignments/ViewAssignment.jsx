@@ -3,6 +3,7 @@ import useAuth from "../../Hooks/useAuth";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import { Helmet } from "react-helmet";
 
 const ViewAssignment = () => {
     const { user } = useAuth();
@@ -51,6 +52,9 @@ const ViewAssignment = () => {
 
     return (
         <>
+            <Helmet>
+                <title>StudySync | View Assignment</title>
+            </Helmet>
             <div className="text-center my-6">
                 <h1 className="text-3xl font-bold text-[#1E3A8A]">Assignment Overview</h1>
                 <p className="text-gray-600 mt-2">
