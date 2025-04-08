@@ -7,7 +7,6 @@ StudySync is a full-stack online assessment web application designed to allow us
 ## 🚀 Live Demo
 
 - 🌐 Client: [https://online-assessment-client.web.app](https://online-assessment-client.web.app)
-- 🌐 Server: [https://study-sync-server.vercel.app](https://study-sync-server.vercel.app)
 
 ---
 
@@ -22,14 +21,10 @@ StudySync is a full-stack online assessment web application designed to allow us
 - React Toastify
 - React Icons
 - JWT for auth
-
-**Backend:**
-- Node.js
-- Express.js
-- MongoDB
-- JWT
-- CORS
-- Cookies
+- React Helmet
+- React Awesome Reveal
+- Swiper.js
+- Firebase Auth
 
 ---
 
@@ -68,6 +63,5 @@ StudySync is a full-stack online assessment web application designed to allow us
 git clone https://github.com/Md-Sufian-Jidan/online-assessment-client.git
 cd online-assessment-client
 
-```bash
 npm install
 npm run dev
